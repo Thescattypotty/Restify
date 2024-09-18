@@ -1,0 +1,64 @@
+# Spring build output
+target/
+*.jar
+*.war
+*.ear
+
+# Maven
+.mvn/
+target/
+pom.xml.tag
+
+# Gradle
+.gradle/
+build/
+!gradle-wrapper.jar
+!gradle-wrapper.properties
+
+# IDE specific
+.vscode/
+.idea/
+*.iml
+
+# Operating system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+*.swp
+*~
+
+# Log files
+*.log
+
+# OS-specific
+*.class
+*.jar
+*.war
+*.ear
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+
+# Spring Boot specific
+*.h2.db
+*.h2.lock
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Dependency directories
+node_modules/
