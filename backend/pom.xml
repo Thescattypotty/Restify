@@ -41,6 +41,12 @@
         <module>config-server</module>
         <module>server-discovery</module>
         <module>gateway-service</module>
+        <module>environment-service</module>
+        <module>collection-service</module>
+        <module>request-service</module>
+        <module>requestHistory-service</module>
+        <module>fileStorage-service</module>
+        
     </modules>
     
     <dependencies>

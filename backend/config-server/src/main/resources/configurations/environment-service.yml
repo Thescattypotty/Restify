@@ -1,0 +1,17 @@
+server:
+  port: 8010
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/environment
+    username: restify
+    password: restify
+  jpa:
+    hibernate:
+      ddl-auto: update
+      database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  application:
+    config:
+      file-url: http://localhost:8222/api/v1/file

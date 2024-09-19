@@ -1,0 +1,16 @@
+server:
+  port: 8020
+
+spring:
+  data:
+    mongodb:
+      username: restify
+      password: restify
+      host: localhost
+      port: 27017
+      database: files
+      authentication-database: admin
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
