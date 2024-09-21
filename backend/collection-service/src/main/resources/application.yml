@@ -1,5 +1,5 @@
 spring:
   application:
-    name: environment-service
+    name: collection-service
   config:
     import: optional:configserver:http://localhost:8888
