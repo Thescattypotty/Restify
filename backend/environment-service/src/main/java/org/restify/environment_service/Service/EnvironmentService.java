@@ -1,9 +1,7 @@
 package org.restify.environment_service.Service;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.restify.environment_service.Entity.Environment;
 import org.restify.environment_service.EntityRepository.EnvironmentRepository;
@@ -15,6 +13,8 @@ import org.restify.environment_service.Payload.Request.EnvironmentRequest;
 import org.restify.environment_service.Payload.Request.FileRequest;
 import org.restify.environment_service.Payload.Response.EnvironmentResponse;
 import org.restify.environment_service.Payload.Response.FileResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,10 +53,17 @@ public class EnvironmentService implements IEnvironmentService
     }
 
     @Override
-    public List<EnvironmentResponse> getAllEnvironment() {
-        return environmentRepository.findAll().stream().map(
-            environmentMapper::fromEnvironment
-        ).collect(Collectors.toList());
+    public Page<EnvironmentResponse> getAllEnvironment(String filter , Pageable pageable) {
+
+        Page<Environment> environmentsPage;
+        if(filter != null && !filter.isEmpty())
+        {
+            environmentsPage = environmentRepository.findByNameContaining(filter, pageable);
+        }else{
+            environmentsPage = environmentRepository.findAll(pageable);
+        }
+
+        return environmentsPage.map(environmentMapper::fromEnvironment);
     }
 
     @Override
@@ -68,7 +75,6 @@ public class EnvironmentService implements IEnvironmentService
         }else{
             throw new EnvironmentNotFoundException("Cannot find environment with id :" + environmentId);
         }
-
     }
 
     @Override

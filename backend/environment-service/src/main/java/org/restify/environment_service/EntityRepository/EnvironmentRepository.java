@@ -4,6 +4,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.restify.environment_service.Entity.Environment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,4 +13,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EnvironmentRepository extends JpaRepository<Environment,UUID>{
     Optional<Environment> findByName(String name);
+    Page<Environment> findByNameContaining(String name, Pageable pageable);
 }
