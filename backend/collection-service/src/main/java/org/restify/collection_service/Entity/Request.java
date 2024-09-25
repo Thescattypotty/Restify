@@ -22,6 +22,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -34,6 +37,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 @Entity
+@Table(name = "requests")
 @EntityListeners(AuditingEntityListener.class)
 public class Request {
 
@@ -53,8 +57,8 @@ public class Request {
     @ElementCollection
     private Map<String , String> headers = new HashMap<>();
 
-    @ManyToOne
-    @JoinColumn(name = "collection_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "collectionId", nullable = false)
     private Collection collection;
 
     @Enumerated(EnumType.STRING)
@@ -63,10 +67,12 @@ public class Request {
     private String authToken;
 
     @CreatedDate
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 }
